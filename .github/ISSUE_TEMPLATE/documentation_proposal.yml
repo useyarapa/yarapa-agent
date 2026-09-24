@@ -1,0 +1,35 @@
+name: Documentation proposal
+description: Propose a new reusable document or a focused improvement.
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Describe a recurring developer need that reusable agent guidance could address. Search the existing rules first and avoid including private or sensitive data.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Developer need
+      description: What recurring problem or decision should the guidance help with?
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Intended outcome
+      description: What should a developer or coding agent be able to do more reliably?
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope and applicability
+      description: Which languages, tools, models, or repository situations does this apply to? Is it broadly reusable or tool-specific?
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Evidence and references
+      description: Add examples of the need and links to authoritative sources, if available.
+    validations:
+      required: false
