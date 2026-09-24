@@ -1,0 +1,36 @@
+name: Documentation issue
+description: Report inaccurate, unclear, outdated, or conflicting guidance.
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Search existing issues first. Do not include credentials, private URLs, or sensitive user data. If reporting a security vulnerability, use the private reporting instructions in SECURITY.md.
+  - type: input
+    id: document
+    attributes:
+      label: Affected document
+      description: Give the path and, if useful, the section or heading.
+      placeholder: rules/example.md — Section heading
+    validations:
+      required: true
+  - type: textarea
+    id: issue
+    attributes:
+      label: What is inaccurate or unclear?
+      description: Describe the problem and its impact.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence or context
+      description: Include a sanitized example, affected tool or model, and authoritative references when available.
+    validations:
+      required: false
+  - type: textarea
+    id: expected
+    attributes:
+      label: Suggested correction
+      description: What should the document say or clarify?
+    validations:
+      required: false
