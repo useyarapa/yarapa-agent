@@ -1,15 +1,10 @@
----
-paths:
-  - "**/*.{ts,tsx,mts,cts,js,jsx,mjs,cjs}"
----
-
 # Current State Authority Rules
 
 Implementation decisions derive from the current specification. Git history serves investigation, not implementation.
 
 ## Decision Inputs
 
-- Read the current requirements, tests and contracts, working tree, and upstream documentation before deciding how to implement.
+- Read the current requirements, tests and contracts, working tree, and authoritative upstream documentation before deciding how to implement.
 - Treat deleted or replaced implementation as gone; implement the current requirement instead.
 - Reason forward from the specification when refactoring or rewriting.
 
@@ -21,5 +16,5 @@ Implementation decisions derive from the current specification. Git history serv
 
 ## Verification
 
-- Confirm every implementation decision traces to a requirement, test, contract, working-tree state, or upstream document.
+- Confirm every implementation decision traces to a requirement, test, contract, working-tree state, or authoritative upstream document.
 - Confirm any Git inspection was required by the task, and its revision was stated.

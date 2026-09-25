@@ -1,11 +1,3 @@
----
-paths:
-  - "**/test/**"
-  - "**/tests/**"
-  - "**/fixtures/**"
-  - "**/*.{test,spec}.*"
----
-
 # Deterministic Testing Rules
 
 Keep tests as small, deterministic protections for observable contracts. A source change alone is not evidence that another test is needed.
@@ -15,8 +7,8 @@ Keep tests as small, deterministic protections for observable contracts. A sourc
 - Name the contract and the distinct defect a proposed test can detect before writing it.
 - Admit tests only for externally observable behavior, public contracts, demonstrated regressions, non-trivial invariants, meaningful failure modes, or an explicit repository verification requirement.
 - Unit-test isolated logic, branching paths, transformations, and failure handling.
-- Verify static framework configuration through build or runtime execution behavior, never by asserting declared configuration object properties.
-- For a changed preset contract, existing and new coverage together must distinguish its configuration shape and at least one observable lint behavior; add nothing when current cases already detect both.
+- Verify static configuration through build or runtime behavior, rather than asserting configuration object properties alone.
+- For a changed configuration preset, existing and new coverage together must distinguish its public shape and at least one observable behavior; add nothing when current cases already detect both.
 - Prove a distinct contract in each test; eliminate assertions duplicated across test layers.
 - Reject tests that restate static guarantees, assert implementation details, exercise impossible states, or increase coverage without increasing defect detection.
 - Treat coverage percentage as a measurement, not a reason to add tests.
@@ -38,23 +30,23 @@ Keep tests as small, deterministic protections for observable contracts. A sourc
 
 ## Canonical Test Idioms and Fixtures
 
-- Use standard test runner assertion patterns (`expect(actual).toEqual(expected)`) directly rather than inventing bespoke helper functions, summary mappers, or custom diagnostic formatters.
-- Keep test setup and helpers lean and canonical; do not construct bespoke mini-frameworks or test harness layers on top of Vitest or ESLint.
-- Use an inline source snippet unless filesystem paths, module resolution, or TypeScript compiler services are part of the contract.
-- Keep required fixtures declarative and read-only under `fixtures/`.
-- Use concrete disk fixtures with valid `tsconfig.json` for type-aware lint behavior.
-- Use maintained ESLint and Vitest capabilities instead of temporary filesystem generation, virtual disks, or bespoke mock harnesses.
+- Use the test framework's standard assertion patterns rather than inventing bespoke helpers, summary mappers, or diagnostic formatters.
+- Keep test setup and helpers lean; do not build a custom test framework on top of the repository's existing tools.
+- Use an inline source snippet unless filesystem paths, module resolution, or compiler services are part of the contract.
+- Keep required fixtures declarative and read-only, following the repository's existing convention.
+- Use concrete filesystem fixtures when filesystem behavior, module resolution, or compiler integration is part of the contract.
+- Prefer maintained capabilities of the existing test tools over temporary filesystem generation or bespoke mock harnesses.
 
 ## Execution Scope
 
 - When test execution is requested, run the narrowest owning test file or filter during iteration.
 - A passing result remains authoritative until relevant source, configuration, helper, or fixture input changes; never repeat the same command against an unchanged tree.
-- Reserve the full package suite for one final run when explicitly requested. Git hooks and CI own unrequested repository-wide verification.
-- Run consumer tests only for export or package metadata boundaries, and coverage only when explicitly requested.
+- Reserve the full suite for one final run when explicitly requested. Use the repository's established automation for other verification.
+- Run consumer tests only for public API or package metadata boundaries, and coverage only when explicitly requested.
 
 ## Verification
 
 - Map every added or modified test to its admitted contract and distinct detectable defect.
 - Confirm each new test file has an independent owner or execution boundary that an existing file cannot represent.
 - Remove every dominated case and unnecessary test artifact before concluding the task.
-- Report exactly which checks ran and which remained delegated to Git hooks or CI.
+- Report exactly which checks ran and which remain delegated to the repository's established automation.
