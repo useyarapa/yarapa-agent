@@ -1,31 +1,26 @@
----
-paths:
-  - "**/*.{ts,tsx,mts,cts,js,jsx,mjs,cjs}"
----
-
 # No Suppression Rules
 
-Resolve compiler and linter diagnostics at their root cause without modifying configuration files, adding bypass annotations, or concealing runtime failures.
+Resolve diagnostics and runtime failures at their root cause. Preserve useful signals instead of hiding them with bypasses or unrelated configuration changes.
 
 ## Type Resolution
 
-- Narrow types using standard TypeScript guards (`typeof`, `instanceof`, `in`, discriminated unions).
-- For missing third-party types, declare ambient module types under `src/types/` using `declare module`.
-- Report conflicting ambient types or unfixable third-party declarations to the user before proposing modifications.
+- Use the language's standard type narrowing and validation mechanisms to make assumptions explicit.
+- For missing third-party type information, use an authoritative upstream definition or a narrow local declaration in the repository's established location.
+- Report conflicting type definitions or unfixable third-party declarations before proposing workarounds.
 
 ## Linter Resolution
 
-- Refactor source code to satisfy linter rule invariants directly at their source.
-- Resolve implementation defects in code; keep `eslint.config.ts` clean of bypass overrides and disabling directives.
-- Report unresolved rule conflicts or configuration defects to the user before proposing modifications.
+- Refactor code to satisfy diagnostic rule invariants at their source.
+- Resolve implementation defects directly; keep bypass directives and rule overrides limited to documented, necessary cases.
+- Report unresolved rule conflicts or configuration defects before proposing workarounds.
 
 ## Error Semantics and Diagnostics
 
 - Preserve runtime failure visibility: let errors surface directly to the caller or process boundary with complete diagnostic context.
-- Handle exceptions only when adding diagnostic context, recovering definitively, or transforming at an architectural boundary; eliminate empty catches and concealing fallback values.
+- Handle errors only when adding diagnostic context, recovering definitively, or transforming at an architectural boundary; eliminate empty catches and concealing fallback values.
 - Retain root causes across abstraction layers rather than wrapping failures in generic catch-all errors.
 
 ## Verification
 
-- Confirm diagnostics on touched files resolve cleanly via language server diagnostics without modifying linter or TypeScript configuration.
-- Verify error handling preserves root cause diagnostics and surfaces errors without silent suppression.
+- Confirm diagnostics on touched files resolve using the repository's supported tooling.
+- Verify error handling preserves root causes and surfaces failures without silent suppression.

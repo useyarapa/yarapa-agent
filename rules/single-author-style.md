@@ -1,8 +1,3 @@
----
-paths:
-  - "**/*.{ts,tsx,mts,cts,js,jsx,mjs,cjs}"
----
-
 # Single Author Style Rules
 
 Write code as if one careful engineer owns the entire repository. Sibling code must share structure, naming, ordering, idioms, and abstraction level unless verified technical requirements dictate otherwise.
@@ -15,16 +10,12 @@ Write code as if one careful engineer owns the entire repository. Sibling code m
 
 ## New Package and Sibling Pre-Flight
 
-Before creating any new package under `packages/*`:
+Before creating a new package or peer module:
 
-1. Read existing sibling directories and manifests (`package.json`, `tsconfig.json`, `tsdown.config.ts`, `src/`) first.
-2. Mirror file architecture and composition patterns verbatim (e.g., config definitions in `src/config.ts` re-exported via `src/index.ts`).
-3. Mirror all shared lifecycle scripts in `package.json` (`build`, `clean*`, `test*`, `lint*`, `typecheck`).
-4. Update all monorepo surfaces in the same pass:
-   - Root `package.json#devDependencies`
-   - CI and release workflows (`ci.yml`, `preview.yml`, `release.yml`)
-   - Documentation (`README.md`, `CONTRIBUTING.md`, `AGENTS.md`, `docs/*`)
-   - PR labeler (`.github/labeler.yml`)
+1. Read representative siblings and their manifests and configuration first.
+2. Follow the established file architecture, composition, and public entrypoint patterns.
+3. Match shared lifecycle commands and supported verification steps.
+4. Update affected workspace metadata, automation, release configuration, and documentation in the same change.
 
 ## Structural Symmetry and Cohesion
 
@@ -35,17 +26,17 @@ Before creating any new package under `packages/*`:
 
 - Use one term for one concept across filenames, symbols, configs, tests, and documentation.
 - Name parallel symbols with matching grammatical structure describing domain contract rather than mechanical implementation.
-- Keep TypeScript types declarative, concrete, and readable: prefer discriminated unions and descriptive options objects over conditional type puzzles or boolean-blind signatures.
+- Keep types, data models, and function signatures concrete and readable; follow the language's established idioms.
 - Write comments only to capture non-obvious domain intent, technical constraints, or upstream workarounds; let identifiers explain mechanics.
 
 ## Scoped Changes
 
 - Confine edits strictly to requested files.
 - Rely on configured linters and formatters as the source of truth for code styling.
-- Treat pattern changes as separate repository-wide decisions rather than incidental edits during unrelated tasks.
+- Make repository-wide convention changes explicit in the task scope.
 
 ## Verification
 
-- Inspect representative siblings to verify the changed file matches dominant structure, naming, export, and abstraction conventions.
-- Confirm types remain declarative and direct without speculative abstractions or wrappers.
+- Inspect representative siblings to verify the change matches established structure, naming, export, and abstraction conventions.
+- Confirm types and interfaces remain direct without speculative abstractions or wrappers.
 - Verify changes remain confined to requested files without incidental refactoring.

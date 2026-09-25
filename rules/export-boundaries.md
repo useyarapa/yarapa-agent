@@ -1,36 +1,29 @@
----
-paths:
-  - "packages/eslint-config-yarapa/**"
-  - "packages/prettier-config-yarapa/**"
-  - "**/src/**"
----
-
 # Export Boundaries Rules
 
-Enforce strict encapsulation and public API boundaries for the ESLint configuration package.
+Keep public APIs explicit and stable while preserving encapsulation between packages and modules.
 
 ## Canonical Public Contract
 
-- Maintain `src/index.ts` as the sole canonical entrypoint and public export contract for the package.
-- Export only complete, deterministic Flat Config arrays or designated profile entrypoints.
-- Never export internal implementation modules, rule maps, or raw plugin instances directly from the package root.
-- Never re-export local sibling capabilities (`*.type.ts`, `*.constant.ts`, `*.helper.ts`) through public barrel files.
+- Maintain the repository's designated public entrypoints as the canonical export contract for each package or module.
+- Export complete, supported interfaces that consumers can rely on; keep implementation details private.
+- Do not expose internal helpers, registries, or third-party implementation objects as public API without an explicit contract.
+- Keep private sibling types, constants, and helpers out of public export surfaces unless consumers need them as part of the documented API.
 
 ## Package Manifest Boundaries
 
-- Configure `package.json` `exports` field with explicit subpath mappings targeting built `dist/` artifacts.
-- Do not expose wildcards or raw internal directories in `package.json#exports`.
-- Ensure all public exports declare corresponding TypeScript type definitions (`types` field preceding `import`/`default`).
-- Maintain `dist/` as a generated artifact directory; never edit files in `dist/` directly.
+- Where package metadata controls exports, list supported entrypoints explicitly and map them to the appropriate build outputs.
+- Do not expose broad wildcards or internal directories through package metadata.
+- Publish the type information and other metadata required by the package ecosystem for every supported export.
+- Treat build outputs as generated artifacts and edit their source inputs instead.
 
 ## Module Encapsulation
 
-- Collocate module-internal types, constants, and utilities in sibling files alongside implementation files.
-- Restrict shared cross-module constants to `src/configs/constants/` through its folder-wrapped barrel file.
-- Keep dependency on external ESLint plugins encapsulated inside their respective configuration modules.
+- Keep module-internal types, constants, and utilities close to the implementation that owns them.
+- Share cross-module values through an established, intentional interface rather than reaching into another module's internals.
+- Encapsulate third-party dependencies behind the module or package that owns their use.
 
 ## Verification
 
-- Inspect `package.json#exports` to ensure no unverified internal paths or wildcards are exposed.
-- Verify that public export signatures remain backwards-compatible and adhere to Flat Config specifications.
-- Confirm all build artifacts in `dist/` align symmetrically with source definitions in `src/`.
+- Inspect the repository's public export metadata to ensure only supported entrypoints are exposed.
+- Verify that public signatures remain compatible with the documented contract and ecosystem conventions.
+- Confirm generated outputs correspond to their source definitions.
