@@ -32,7 +32,7 @@ The rules cover different parts of a codebase. Check each file's `paths:` metada
 
 | Rule | Focus |
 | --- | --- |
-| [`current-state-authority.md`](rules/current-state-authority.md) | Base implementation decisions on current requirements, tests, contracts, and working-tree state. |
+| [`current-state-authority.md`](rules/current-state-authority.md) | Use current repository state as implementation authority; treat Git history as historical evidence and do not reuse deleted or reverted code without an explicit restoration request. |
 | [`dependency-security.md`](rules/dependency-security.md) | Review dependency maintenance, lifecycle scripts, versions, and lockfile changes. |
 | [`deterministic-testing.md`](rules/deterministic-testing.md) | Design focused, deterministic tests for distinct, observable contracts and defects. |
 | [`export-boundaries.md`](rules/export-boundaries.md) | Keep package exports explicit and internal modules encapsulated. |
