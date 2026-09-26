@@ -18,9 +18,17 @@ Keep configuration demand-driven, observable, and aligned with verified reposito
 - Use consumer-facing patterns only when they are part of a documented contract and covered by tests.
 - Keep generated artifacts and external tool boundaries explicit rather than hiding them in broad patterns.
 
+## Effective Configuration
+
+- Remove dead settings that no supported consumer reads, including stale keys, unreachable branches, and values shadowed by later configuration.
+- Ensure selectors, paths, and patterns match at least one supported target; remove entries that can never apply.
+- Avoid no-op values that equal the tool's effective default unless the explicit value is required by a public contract or protects against a documented default change.
+- Verify configuration through the tool's validation or effective-configuration output, or through a representative command that demonstrates the setting takes effect. File presence alone does not prove a setting is active.
+
 ## Verification
 
 - Confirm that each non-obvious configuration option has a requirement or observable verification.
 - Inspect configured paths and patterns against the repository's actual files and supported boundaries.
+- Check for ignored, shadowed, unreachable, unmatched, or default-equivalent settings.
 - Check that shared configuration values have one clear source of truth.
 - Inspect the diff for unneeded packages or options; use the repository's normal verification commands and automation.
