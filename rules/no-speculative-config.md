@@ -1,10 +1,10 @@
 # No Speculative Configuration Rules
 
-Keep configuration demand-driven, observable, and aligned with verified repository and consumer requirements.
+Keep configuration demand-driven, observable, and aligned with verified requirements of the affected project and its consumers.
 
 ## Demand-Driven Configuration
 
-- Add or modify rules, plugins, parser options, environment flags, scripts, and workflow settings only for an active requirement.
+- Add or modify rules, plugins, parser options, environment flags, scripts, and workflow settings only for an active requirement in the configuration's scope.
 - Prefer the smallest configuration that satisfies the current contract.
 - Reuse repeated configuration values when a local abstraction makes the configuration clearer; avoid duplicating identical definitions.
 - Remove configuration that has no current consumer, test, or documented public purpose.
@@ -12,23 +12,22 @@ Keep configuration demand-driven, observable, and aligned with verified reposito
 
 ## Match Patterns and Boundaries
 
-- Make repository paths, file patterns, extensions, and ignore rules match actual files and supported boundaries.
-- Use an existing source of truth for cross-cutting patterns and lists; avoid duplicating or independently maintaining them across configuration modules.
-- Derive composite settings from established shared definitions when that preserves consistency.
-- Use consumer-facing patterns only when they are part of a documented contract and covered by tests.
+- Make paths, file patterns, extensions, and ignore rules match actual files in the intended repository, workspace, or project boundary.
+- Compose project configuration from established shared definitions and keep shared patterns in one source of truth.
+- Use consumer-facing patterns only when they are part of a documented contract and verified through an applicable check.
 - Keep generated artifacts and external tool boundaries explicit rather than hiding them in broad patterns.
 
 ## Effective Configuration
 
-- Remove dead settings that no supported consumer reads, including stale keys, unreachable branches, and values shadowed by later configuration.
-- Ensure selectors, paths, and patterns match at least one supported target; remove entries that can never apply.
+- Remove dead settings that no supported consumer in scope reads, including stale keys, unreachable branches, and values shadowed by later configuration.
+- Ensure selectors, paths, and patterns match intended supported targets and do not unintentionally cross project boundaries.
 - Avoid no-op values that equal the tool's effective default unless the explicit value is required by a public contract or protects against a documented default change.
 - Verify configuration through the tool's validation or effective-configuration output, or through a representative command that demonstrates the setting takes effect. File presence alone does not prove a setting is active.
 
 ## Verification
 
 - Confirm that each non-obvious configuration option has a requirement or observable verification.
-- Inspect configured paths and patterns against the repository's actual files and supported boundaries.
+- Inspect configured paths and patterns against actual files and intended boundaries of the affected project or workspace.
 - Check for ignored, shadowed, unreachable, unmatched, or default-equivalent settings.
 - Check that shared configuration values have one clear source of truth.
-- Inspect the diff for unneeded packages or options; use the repository's normal verification commands and automation.
+- Inspect changes for unused settings or dependencies added only for the configuration; use the affected project's established validation commands and automation.

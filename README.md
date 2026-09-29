@@ -2,6 +2,8 @@
 
 Yarapa Agent Docs is a library of reusable Markdown guidance for developers working with coding agents. Browse `rules/`, select guidance that fits your repository, and add it through the project-instruction format supported by your coding tool.
 
+The rules adapt to different languages, frameworks, and repository layouts. TypeScript-first guidance focuses on `.ts`/`.tsx` projects using React, Next.js, Node.js, and NestJS.
+
 ## Use These Documents with Your Agent
 
 The rule content is model-agnostic, but file discovery and metadata are specific to each coding tool. A local copy does not enter an agent's context until the tool reads it.
@@ -20,15 +22,17 @@ File names and supported formats vary by tool. See the official [Codex](https://
 
 ### Adoption practices
 
-1. Choose only rules that fit the target repository. Review their assumptions and resolve conflicts with the repository's existing guidance.
+1. Apply rules whose scope and prerequisites match the target repository's language, runtime, tools, architecture, and existing instructions.
 2. Copy selected guidance into a project instruction file the tool reads, or reference the source file using a documented import mechanism. Do not assume an arbitrary link or file location will be loaded.
 3. Keep always-loaded instructions concise, specific, and actionable. Split distinct concerns into focused files and load detailed guidance only where relevant.
 4. Translate or remove metadata such as `paths:` when adapting a rule. Scope syntax differs: Claude Code uses `paths:`, GitHub Copilot uses `applyTo`, and Cursor project rules use `.mdc` metadata such as `globs`. Do not assume frontmatter transfers unchanged.
-5. Keep adopted rules in version control and review them as the repository changes. Treat text instructions as guidance; use permissions, hooks, or CI checks for requirements that need deterministic enforcement.
+5. Keep adopted rules in version control and review them as the repository changes. Treat text instructions as guidance; use enforcement mechanisms supported by the target tooling, such as permissions, hooks, or CI, for requirements that need deterministic enforcement.
+
+For monorepos, apply project-level guidance to the affected application or package; apply repository-level guidance to shared tooling, contracts, and workspace behavior.
 
 ## Available Rules
 
-The rules cover different parts of a codebase. Check each file's `paths:` metadata and assumptions before adopting it; some rules target specific languages, tools, or package layouts.
+The rules cover different parts of a codebase. Check each rule's scope, prerequisites, and assumptions before adopting it; some target specific languages, tools, or repository layouts.
 
 | Rule | Focus |
 | --- | --- |
@@ -40,3 +44,4 @@ The rules cover different parts of a codebase. Check each file's `paths:` metada
 | [`no-speculative-config.md`](rules/no-speculative-config.md) | Add configuration for current requirements; avoid unused options and duplicated patterns. |
 | [`no-suppression.md`](rules/no-suppression.md) | Resolve type and lint issues at their source while preserving useful error diagnostics. |
 | [`single-author-style.md`](rules/single-author-style.md) | Follow established local patterns for structure, naming, types, and abstractions. |
+| [`typescript-first.md`](rules/typescript-first.md) | Prefer TypeScript in supported apps and packages; scope `.ts`/`.tsx` choices to the owning project. |

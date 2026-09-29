@@ -1,31 +1,35 @@
 # Current State Authority Rules
 
-Use the current repository state as the implementation authority; use Git history as evidence for investigation.
+Use the source order below for implementation decisions; inspect Git history to investigate prior behavior.
 
 ## Source of Truth
 
 For implementation decisions, use this order of authority:
 
 1. Explicit current user requirements
-2. Current working tree
-3. Current tests, contracts, schemas, and configuration
-4. Current runtime behavior and logs
-5. Official upstream documentation
-6. Git history as historical evidence only
+2. Applicable project instructions, including instructions scoped to the affected directory or workspace
+3. Current working tree
+4. Applicable tests, contracts, schemas, and configuration
+5. Current runtime behavior and logs
+6. Official upstream documentation
+7. Git history as historical evidence only
+
+## Repository and Workspace Scope
+
+- Identify the affected application, package, service, or project before investigating.
+- In a multi-project repository, read both repository-level guidance and the instructions and configuration that apply to the affected project.
+- For changes crossing project boundaries, check each affected project's contract and its shared workspace configuration.
 
 ## Deleted and Reverted Code
 
-- Treat code absent from the current working tree as intentionally removed unless current evidence shows otherwise.
-- Restore, copy, port, adapt, reconstruct, or derive an implementation from deleted or reverted code only when the user explicitly requests restoration of historical code.
-- Treat code removed because it was buggy, incorrect, obsolete, rejected, or being rewritten as rejected.
-- Do not use rejected historical code as a reference implementation, implementation baseline, shortcut for rebuilding functionality, evidence that the previous design was correct, or justification for restoring the previous architecture.
+- Treat code absent from the current working tree as removed. Reuse a deleted or reverted implementation only when the user explicitly requests that historical implementation.
+- Treat code removed because it was buggy, incorrect, obsolete, rejected, or being rewritten as rejected; when restoration is requested, verify it against current requirements and resolve the reason it was removed.
 
 ## Git History Investigation
 
 - Inspect Git history to identify when behavior changed, locate regression boundaries, understand why code changed or was removed, investigate previous bugs, discover rejected approaches, understand architectural decisions, or compare historical and current behavior.
 - Use commands such as `git log`, `git show`, `git blame`, `git diff`, `git bisect`, `git log -S`, and `git log -G` for investigation.
 - Establish the proven cause before making the smallest correct change against the current codebase.
-- Treat historical code as evidence about the past. Finding it does not authorize restoring or reusing it.
 
 ## Rewrite Process
 
@@ -33,18 +37,17 @@ When rewriting functionality:
 
 1. Inspect the current working tree.
 2. Establish the current requirements and contracts.
-3. Inspect current tests and configuration.
+3. Inspect the tests, contracts, and configuration that apply to the affected project.
 4. Reproduce or verify the current problem when applicable.
-5. Implement against the current state; use any historical implementation only to understand what was attempted and why it changed or failed.
-6. Complete the rewrite only after the checks in Verification pass.
+5. Implement against the current state; use historical implementation only to understand what was attempted and why it changed or failed.
+6. Run the applicable checks required by the task or established project workflow, then report their results and any checks unavailable or not run.
 
 ## Conflict Resolution
 
-- When Git history conflicts with current requirements, tests, contracts, architecture, configuration, or the current working tree, the current state wins unless the user explicitly instructs otherwise.
-- Do not infer that code should be restored merely because it existed before. Determine why it existed, why it changed or disappeared, and what the current system requires.
+- When repository-level and project-level conventions differ, apply the more specific convention within its stated scope and follow the workspace's documented composition rules.
 
 ## Verification
 
-- Confirm implementation decisions follow the source-of-truth order.
-- Pair each historical finding with the current working tree and identify the revision consulted; check the target revision explicitly if `HEAD` may have moved.
-- For rewrites, confirm relevant current tests pass and runtime behavior satisfies the current contract.
+- Confirm implementation decisions follow the source-of-truth order for the affected project or projects.
+- Pair historical findings with the current working tree and identify the revision consulted; check the target revision explicitly if `HEAD` may have moved.
+- For rewrites, verify the current contract with applicable checks and runtime behavior where available.

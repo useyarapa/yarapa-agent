@@ -1,23 +1,23 @@
 # Dependency Security Rules
 
-Review dependencies for supply-chain risk, ongoing maintenance, and reproducible resolution using the conventions of the current repository.
+Review dependencies for supply-chain risk, maintenance, and reproducible resolution using the conventions of the affected project and repository.
 
-## Dependency Screening and Lifecycle
+## Selection and Ownership
 
-- Evaluate maintenance status, release cadence, license, and security advisory history before introducing a dependency.
-- Prefer native platform capabilities and existing lockfile dependencies over new external packages.
+- Before introducing a dependency, assess its release cadence, license, advisory history, compatibility, and transitive dependency health.
+- Prefer native platform capabilities and dependencies already provided by the owning project over new external dependencies.
 - Add a dependency only when active code, tests, build tooling, or a documented contract uses it.
+- In a multi-project repository, place each dependency in the manifest that owns its consumer; use shared or root manifests only when the workspace convention calls for it.
 - Remove a dependency when its last consumer is removed.
-- Keep dependencies in the manifest category that matches their actual role.
-- Prefer reputable, actively maintained dependencies with compatible upstream support.
-- Reject dependencies with unmaintained transitive trees, unresolved compatibility warnings, or unverified installation scripts.
+- Place dependencies in the category provided by the ecosystem that matches their role, such as runtime, development, peer, or optional dependencies where supported.
+- Prefer actively maintained dependencies compatible with supported upstreams; resolve warnings and verify installation scripts before adoption.
 
 ## Lockfile and Versions
 
 - Follow the repository's versioning policy; pin exact versions when deterministic execution requires it.
-- Maintain the ecosystem's lockfile as the authoritative resolution record when one is used.
+- Maintain the relevant ecosystem lockfile as the authoritative resolution record when the project uses one.
 - Bound compatibility ranges to supported runtimes and consumers.
-- Keep package manifests free of speculative, unused, and duplicate dependencies.
+- Keep dependency manifests free of speculative, unused, and duplicate dependencies.
 
 ## Vulnerability Policy
 
@@ -25,5 +25,5 @@ Review dependencies for supply-chain risk, ongoing maintenance, and reproducible
 
 ## Verification
 
-- Inspect manifest and lockfile changes for unauthorized packages, unjustified version ranges, or unconsumed dependencies.
+- Inspect affected manifests and lockfiles for unauthorized packages, unjustified version ranges, or unconsumed dependencies.
 - Resolve findings from requested dependency and unused-code analysis rather than suppressing them.
