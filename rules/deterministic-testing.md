@@ -16,7 +16,7 @@ Keep tests as small, deterministic protections for observable contracts. A sourc
 
 ## Coverage Ownership
 
-- Search existing coverage in the affected project before adding a case. Extend the test file that already owns the contract whenever one exists.
+- Search existing coverage in the project before adding a case. Extend the test file that already owns the contract whenever one exists.
 - Create a test file only when the contract has no owner or requires a materially different execution harness or fixture lifecycle. File length, naming symmetry, and case count do not establish a boundary.
 - Follow the nearest applicable directory and naming pattern; never create files, directories, helpers, or fixtures solely to mirror sibling structure.
 - Keep setup local until multiple tests share live runtime logic, then extract one canonical helper.
@@ -26,6 +26,7 @@ Keep tests as small, deterministic protections for observable contracts. A sourc
 - Use the minimum distinguishing cases needed to protect the admitted contract.
 - Keep a case only when it detects a defect the remaining cases would miss; remove cases already covered elsewhere.
 - Represent data-only variants in one parameterized test rather than parallel cases or files.
+- Map every added or modified case to its admitted contract and defect.
 
 ## Canonical Test Idioms and Fixtures
 
@@ -38,14 +39,7 @@ Keep tests as small, deterministic protections for observable contracts. A sourc
 
 ## Execution Scope
 
-- When test execution is requested, run the narrowest owning test file or filter using the affected project's established command.
-- A passing result remains authoritative until relevant source, configuration, helper, or fixture input changes; never repeat the same command against an unchanged tree.
-- Reserve the full suite for one final run when explicitly requested. Use the repository's established automation for other verification.
+- When test execution is requested, run the narrowest owning test file or filter using the project's established command.
+- A passing result remains authoritative until relevant source, configuration, helper, or fixture input changes.
+- Reserve the full suite for one final run when explicitly requested.
 - Run consumer or end-to-end checks when the changed contract crosses a project boundary or user-visible flow; run coverage only when explicitly requested.
-
-## Verification
-
-- Map every added or modified test to its admitted contract and distinct detectable defect.
-- Confirm each new test file has an independent contract or execution boundary that an existing file cannot represent.
-- Confirm each added or modified case protects a distinct admitted contract and is not dominated by existing coverage.
-- Report exactly which checks ran and which remain delegated to the repository's established automation.

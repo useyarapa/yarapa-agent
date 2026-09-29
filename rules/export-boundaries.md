@@ -14,16 +14,9 @@ Keep supported interfaces explicit and stable at real consumer boundaries while 
 - Where package metadata controls a public surface, declare supported entrypoints and map them to the appropriate build outputs using the ecosystem's conventions.
 - Keep internal directories private; use wildcard exports only when they are an intentional, supported part of the public contract.
 - Publish type information when a TypeScript package or another consumer contract requires it.
-- Treat build outputs as generated artifacts and edit their source inputs instead.
 
 ## Module Encapsulation
 
 - Keep internal types, constants, and utilities close to the implementation that owns them.
 - Share values across package or application boundaries through an intentional interface rather than importing another project's private source files.
 - Encapsulate third-party dependencies behind the project boundary that owns their use.
-
-## Verification
-
-- Inspect the public metadata or routing configuration involved in the change to ensure only supported entrypoints are exposed.
-- Verify that affected public signatures remain compatible with the documented contract and ecosystem conventions.
-- Confirm generated outputs correspond to their source definitions when generated outputs are part of the boundary.

@@ -1,12 +1,11 @@
 # Dependency Security Rules
 
-Review dependencies for supply-chain risk, maintenance, and reproducible resolution using the conventions of the affected project and repository.
+Review dependencies for supply-chain risk, maintenance, and reproducible resolution using the conventions of the project and repository.
 
 ## Selection and Ownership
 
 - Before introducing a dependency, assess its release cadence, license, advisory history, compatibility, and transitive dependency health.
-- Prefer native platform capabilities and dependencies already provided by the owning project over new external dependencies.
-- Add a dependency only when active code, tests, build tooling, or a documented contract uses it.
+- Prefer native platform capabilities and dependencies the owning project already provides. Add a dependency only when active code, tests, build tooling, or a documented contract uses it.
 - In a multi-project repository, place each dependency in the manifest that owns its consumer; use shared or root manifests only when the workspace convention calls for it.
 - Remove a dependency when its last consumer is removed.
 - Place dependencies in the category provided by the ecosystem that matches their role, such as runtime, development, peer, or optional dependencies where supported.
@@ -22,8 +21,4 @@ Review dependencies for supply-chain risk, maintenance, and reproducible resolut
 ## Vulnerability Policy
 
 - Run dependency audits when requested or required by the repository's established verification policy; do not add them as an implicit local step.
-
-## Verification
-
-- Inspect affected manifests and lockfiles for unauthorized packages, unjustified version ranges, or unconsumed dependencies.
 - Resolve findings from requested dependency and unused-code analysis rather than suppressing them.

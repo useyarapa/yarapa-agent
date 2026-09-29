@@ -30,6 +30,7 @@ For implementation decisions, use this order of authority:
 - Inspect Git history to identify when behavior changed, locate regression boundaries, understand why code changed or was removed, investigate previous bugs, discover rejected approaches, understand architectural decisions, or compare historical and current behavior.
 - Use commands such as `git log`, `git show`, `git blame`, `git diff`, `git bisect`, `git log -S`, and `git log -G` for investigation.
 - Establish the proven cause before making the smallest correct change against the current codebase.
+- Pair historical findings with the current working tree and identify the revision consulted; check the target revision explicitly if `HEAD` may have moved.
 
 ## Rewrite Process
 
@@ -45,9 +46,3 @@ When rewriting functionality:
 ## Conflict Resolution
 
 - When repository-level and project-level conventions differ, apply the more specific convention within its stated scope and follow the workspace's documented composition rules.
-
-## Verification
-
-- Confirm implementation decisions follow the source-of-truth order for the affected project or projects.
-- Pair historical findings with the current working tree and identify the revision consulted; check the target revision explicitly if `HEAD` may have moved.
-- For rewrites, verify the current contract with applicable checks and runtime behavior where available.

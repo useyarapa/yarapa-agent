@@ -1,6 +1,6 @@
 # Demand-Driven Configuration Rules
 
-Keep configuration demand-driven, observable, and aligned with verified requirements of the affected project and its consumers.
+Keep configuration demand-driven, observable, and aligned with verified requirements of the project and its consumers.
 
 ## Demand-Driven Configuration
 
@@ -23,11 +23,3 @@ Keep configuration demand-driven, observable, and aligned with verified requirem
 - Ensure selectors, paths, and patterns match intended supported targets and do not unintentionally cross project boundaries.
 - Avoid no-op values that equal the tool's effective default unless the explicit value is required by a public contract or protects against a documented default change.
 - Verify configuration through the tool's validation or effective-configuration output, or through a representative command that demonstrates the setting takes effect. File presence alone does not prove a setting is active.
-
-## Verification
-
-- Confirm that each non-obvious configuration option has a requirement or observable verification.
-- Inspect configured paths and patterns against actual files and intended boundaries of the affected project or workspace.
-- Check for ignored, shadowed, unreachable, unmatched, or default-equivalent settings.
-- Check that shared configuration values have one clear source of truth.
-- Inspect changes for unused settings; use the affected project's established validation commands and automation.

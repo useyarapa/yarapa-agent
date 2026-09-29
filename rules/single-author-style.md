@@ -6,7 +6,7 @@ Treat each cohesive application, package, or component as if one careful enginee
 
 - Match representative siblings in the same category and owning project before deciding layout, naming, exports, helper placement, composition, error handling, or abstraction level.
 - Default to the language and ecosystem's standard idioms when no applicable local pattern exists.
-- When patterns conflict, follow the most specific applicable project instruction and closest relevant precedent; explain the chosen convention when the conflict affects the design.
+- Explain the chosen convention when a conflicting pattern affects the design.
 
 ## Structural Symmetry and Cohesion
 
@@ -25,9 +25,3 @@ Treat each cohesive application, package, or component as if one careful enginee
 - Keep edits within the requested component and its necessary consumers or workspace metadata.
 - Use the owning project's configured linters and formatters as the source of truth for code style.
 - Make cross-project or repository-wide convention changes explicit in the task scope.
-
-## Verification
-
-- Inspect relevant siblings in the owning project to verify structure, naming, interfaces, and abstraction conventions.
-- Confirm interfaces remain direct without speculative abstractions or wrappers.
-- Verify changes stay within the requested scope and include any necessary workspace references without incidental refactoring.

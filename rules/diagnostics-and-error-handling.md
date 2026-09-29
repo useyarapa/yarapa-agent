@@ -6,21 +6,15 @@ Resolve diagnostics and runtime failures at their root cause using the affected 
 
 - In typed languages, use standard type narrowing and validation mechanisms to make assumptions explicit; validate external input at runtime with the project's established approach.
 - For missing third-party types, annotations, or schemas, use authoritative upstream definitions or a narrow local definition or adapter in the established location.
-- Report conflicting type information or unfixable third-party declarations before proposing workarounds.
 
 ## Linter Resolution
 
 - Refactor code to satisfy diagnostic invariants at their source.
 - Resolve implementation defects directly; keep bypass directives and rule overrides limited to documented, necessary cases.
-- Report unresolved rule conflicts or configuration defects before proposing workarounds.
+- Report unresolved conflicts — type and third-party declaration conflicts, or rule and configuration defects — before proposing workarounds.
 
 ## Error Semantics and Diagnostics
 
 - Preserve runtime failure visibility by surfacing errors at the responsible caller or process boundary with useful diagnostic context.
 - Handle errors when adding context, recovering definitively, or translating them at an application or service boundary; remove empty catches and concealing fallback values.
 - Retain root causes across layers using the language's standard error or exception mechanisms.
-
-## Verification
-
-- Confirm diagnostics on touched files resolve using the affected project's supported tooling.
-- Verify error handling preserves root causes and surfaces failures without silent suppression.
