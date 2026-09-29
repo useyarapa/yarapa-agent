@@ -1,4 +1,4 @@
-# No Anti-Patterns Rules
+# Toolchain and Runtime Rules
 
 Keep automation and implementation predictable within the project's declared toolchain and supported environments.
 

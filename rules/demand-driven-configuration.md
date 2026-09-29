@@ -1,4 +1,4 @@
-# No Speculative Configuration Rules
+# Demand-Driven Configuration Rules
 
 Keep configuration demand-driven, observable, and aligned with verified requirements of the affected project and its consumers.
 
@@ -30,4 +30,4 @@ Keep configuration demand-driven, observable, and aligned with verified requirem
 - Inspect configured paths and patterns against actual files and intended boundaries of the affected project or workspace.
 - Check for ignored, shadowed, unreachable, unmatched, or default-equivalent settings.
 - Check that shared configuration values have one clear source of truth.
-- Inspect changes for unused settings or dependencies added only for the configuration; use the affected project's established validation commands and automation.
+- Inspect changes for unused settings; use the affected project's established validation commands and automation.

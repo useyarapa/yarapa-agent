@@ -1,4 +1,4 @@
-# No Suppression Rules
+# Diagnostics and Error Handling Rules
 
 Resolve diagnostics and runtime failures at their root cause using the affected language and toolchain. Preserve useful signals instead of hiding them with bypasses or unrelated configuration changes.
 

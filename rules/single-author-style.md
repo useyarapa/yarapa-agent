@@ -8,15 +8,6 @@ Treat each cohesive application, package, or component as if one careful enginee
 - Default to the language and ecosystem's standard idioms when no applicable local pattern exists.
 - When patterns conflict, follow the most specific applicable project instruction and closest relevant precedent; explain the chosen convention when the conflict affects the design.
 
-## New Components and Workspace Scope
-
-Before creating a new application, package, service, or peer module:
-
-1. Read repository-level and nearest project-level instructions, manifests, and configuration.
-2. Inspect representative siblings in the same workspace or project and follow their architecture and public interface patterns.
-3. Use the declared language, runtime, framework, lifecycle commands, and verification steps for that project; follow its package-manager conventions where applicable.
-4. Update workspace registration, automation, release configuration, and documentation when the new component requires them.
-
 ## Structural Symmetry and Cohesion
 
 - Keep declarations and implementation sections predictable among siblings with the same responsibility, following local structure where it exists.
