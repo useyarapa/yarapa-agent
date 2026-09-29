@@ -33,6 +33,12 @@ Review each rule's scope before adopting it. Some are useful across a repository
 | Configuration and tooling | [`demand-driven-configuration.md`](rules/demand-driven-configuration.md) | Adding or changing tool, build, editor, or workflow configuration and its file patterns. |
 | Configuration and tooling | [`dependency-security.md`](rules/dependency-security.md) | Adding, updating, moving, or removing packages and their lockfile entries. |
 | Configuration and tooling | [`toolchain-and-runtime.md`](rules/toolchain-and-runtime.md) | Changing hooks, CI, scripts, runners, or code that depends on platform and runtime behavior. |
+| Compliance and assurance | [`compliance-audit-scope-and-standards.md`](rules/compliance-audit-scope-and-standards.md) | Defining scope and standard editions for an internal compliance audit, readiness review, or gap assessment. |
+| Compliance and assurance | [`compliance-audit-evidence.md`](rules/compliance-audit-evidence.md) | Collecting and evaluating evidence for framework requirements or technical controls. |
+| Compliance and assurance | [`compliance-audit-findings-and-reporting.md`](rules/compliance-audit-findings-and-reporting.md) | Classifying findings and writing an evidence-backed audit report. |
+| Compliance and assurance | [`compliance-audit-remediation.md`](rules/compliance-audit-remediation.md) | Recommending, approving, and re-verifying remediation from audit findings. |
+| Compliance and assurance | [`iso-management-system-audits.md`](rules/iso-management-system-audits.md) | Reviewing scope and evidence for ISO management-system standards and related guidance; pair with the general audit rules. |
+| Compliance and assurance | [`pci-dss-audits.md`](rules/pci-dss-audits.md) | Establishing CDE scope and reviewing PCI DSS controls; pair with the general audit rules. |
 
 The rules are independent documents. Select them by scope and need; adopting one does not require adopting neighboring rules.
 
