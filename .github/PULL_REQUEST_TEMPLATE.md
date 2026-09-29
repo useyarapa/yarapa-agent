@@ -1,14 +1,14 @@
 ## Summary
 
-<!-- Describe the need and the outcome of this change. -->
+<!-- Describe the need and outcome of this change. -->
 
 ## Documents changed
 
-<!-- List the affected files and intended audience. -->
+<!-- List changed documents and who should use them. -->
 
 ## Sources and validation
 
-<!-- Link authoritative references and list checks run. Say when no check was needed. -->
+<!-- Link external sources and list checks run, or explain why none apply. -->
 
 ## Checklist
 
