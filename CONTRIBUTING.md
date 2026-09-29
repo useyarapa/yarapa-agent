@@ -11,4 +11,4 @@ When proposing a change:
 
 Before opening a pull request, run `git diff --check` and describe the change, its intended audience, and any sources or checks used. The **Validate Docs** workflow also checks changed lines for whitespace errors.
 
-See the [README](../README.md) for the document catalog and adoption guidance.
+See the [README](README.md) for the document catalog and adoption guidance.
